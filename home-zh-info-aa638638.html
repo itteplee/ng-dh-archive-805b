@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>hth · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background: #f5f3ef;
+            color: #1e1c1a;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* —— 深色头图 hero —— */
+        .hero {
+            background: #121212;
+            background-image: radial-gradient(circle at 25% 30%, #2a2a2a 0%, #0b0b0b 90%);
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, #f5f3ef);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #f0ede8;
+            margin-bottom: 0.4rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #bab5ae;
+            max-width: 540px;
+            margin: 0.75rem auto 1.5rem;
+            font-weight: 350;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #cbc6be;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* —— 三段正文区 —— */
+        .main-container {
+            max-width: 780px;
+            margin: -1.5rem auto 0;
+            padding: 0 1.8rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .section-card:last-of-type {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e8e3db;
+            display: inline-block;
+            letter-spacing: -0.01em;
+        }
+
+        .section-card p {
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+            color: #2c2926;
+        }
+
+        .section-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 强调色链接 – 橄榄绿 */
+        a {
+            color: #3d6b4f;
+            text-decoration: none;
+            font-weight: 470;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: #1f3f2b;
+            border-bottom: 1px solid #3d6b4f;
+        }
+
+        .highlight-box {
+            background: #f1efe9;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0 0.5rem;
+            border-left: 4px solid #3d6b4f;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-mini {
+            margin-top: 1rem;
+            background: #faf9f6;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            border: 1px solid #e3ddd4;
+        }
+
+        .faq-mini dt {
+            font-weight: 500;
+            margin: 0.7rem 0 0.2rem;
+            color: #2b3e2c;
+        }
+
+        .faq-mini dd {
+            margin-left: 0.2rem;
+            color: #3a3632;
+            font-size: 0.95rem;
+        }
+
+        /* —— 页尾访问提示 —— */
+        .footer-note {
+            max-width: 780px;
+            margin: 0 auto 0.5rem;
+            padding: 0 1.8rem 2.5rem;
+            text-align: center;
+        }
+
+        .footer-note .inner {
+            background: #eae6de;
+            border-radius: 40px;
+            padding: 1.6rem 2rem 1.8rem;
+            display: inline-block;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .footer-note p {
+            font-size: 1.05rem;
+            color: #2b2824;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-note .meta {
+            font-size: 0.85rem;
+            color: #6b655b;
+            margin-top: 0.3rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dbd4c9;
+            margin: 0.8rem 0;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 580px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero .sub {
+                font-size: 1rem;
+            }
+            .section-card {
+                padding: 1.6rem 1.2rem;
+                border-radius: 20px;
+            }
+            .main-container {
+                padding: 0 1rem 2.5rem;
+            }
+            .footer-note {
+                padding: 0 1rem 1.8rem;
+            }
+            .footer-note .inner {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>hth · 简明指南</h1>
+        <p class="sub">从基础说明到访问建议，一份认真整理过的参考页。</p>
+        <span class="tagline">杂志专题式 · 清晰平实</span>
+    </header>
+
+    <!-- 正文三段卡片 -->
+    <div class="main-container">
+
+        <!-- 第一段：背景与切入 -->
+        <section class="section-card">
+            <h2>背景与定位</h2>
+            <p>对于经常需要查阅网络信息的人来说，快速找到条理清晰、内容稳定的说明页很有价值。这里以 <a href="https://home-zh-hth.com">hth</a> 为例，整理了几条基础认知和实际使用时的注意事项。整个说明围绕「简明指南与访问提醒」展开，既不过度简化，也不堆砌术语。</p>
+            <p>信息本身的价值在于可靠与可复现。无论是初次接触还是想重新确认某些细节，下面几段都能提供直接的参考。本页不包含任何第三方推广或诱导性表述，仅作为独立的信息整理。</p>
+            <div class="highlight-box">
+                <p>📌 一次只关注一个核心概念：如何更顺畅地理解并使用 <a href="https://home-zh-hth.com">hth</a> 所代表的资源路径。其他无关信息不做延伸。</p>
+            </div>
+        </section>
+
+        <!-- 第二段：特点与常见场景 -->
+        <section class="section-card">
+            <h2>特点与常见场景</h2>
+            <p>从结构上看，<a href="https://home-zh-hth.com">hth</a> 的页面组织方式偏向直接展示，减少中间跳转。这意味着访问时如果能提前明确自身需求（比如查找特定分类或最新动态），效率会更高。以下三个场景在日常使用中比较有代表性：</p>
+            <ul style="list-style: none; margin: 0.6rem 0 0.8rem 0.2rem;">
+                <li style="margin-bottom: 0.6rem; padding-left: 1.8rem; position: relative;">✦ &nbsp; <strong>快速概览</strong> — 无需注册或登录即可看到主要内容结构，适合初次判断。</li>
+                <li style="margin-bottom: 0.6rem; padding-left: 1.8rem; position: relative;">✦ &nbsp; <strong>定向查阅</strong> — 页面内分类清晰，可通过关键词定位到相关区块。</li>
+                <li style="margin-bottom: 0.6rem; padding-left: 1.8rem; position: relative;">✦ &nbsp; <strong>跨设备访问</strong> — 适配移动端与桌面端，布局稳定，不依赖特定插件。</li>
+            </ul>
+            <p>这些场景都建立在页面本身保持简洁、克制的设计基础上。如果遇到加载异常或布局错乱，可以优先检查网络环境或浏览器版本。</p>
+
+            <!-- 微型 FAQ 摘要 -->
+            <dl class="faq-mini">
+                <dt>❓ 是否需要特殊工具才能访问？</dt>
+                <dd>不需要。标准浏览器即可，建议保持系统及浏览器为较新版本，以获得最佳显示效果。</dd>
+                <dt>❓ 页面内容更新频率如何？</dt>
+                <dd>以实际维护节奏为准，通常保持内容及时、可参考。具体可留意页面标注的时间或版本说明。</dd>
+            </dl>
+        </section>
+
+        <!-- 第三段：访问提醒与实用提示 -->
+        <section class="section-card">
+            <h2>访问提醒与实用提示</h2>
+            <p>为了让每次访问都更顺畅，这里整理了几条基于实际使用经验的提醒。它们不复杂，但能避免一些常见的小困扰。</p>
+            <ol style="margin: 0.8rem 0 0.8rem 1.4rem; padding-left: 0.2rem;">
+                <li style="margin-bottom: 0.6rem;"><strong>确认网址正确</strong> — 直接输入或从书签打开 <a href="https://home-zh-hth.com">hth</a> 主页，避免通过不明来源的链接跳转。</li>
+                <li style="margin-bottom: 0.6rem;"><strong>注意页面协议</strong> — 使用 https 加密连接，数据传输更安全。浏览器地址栏应显示安全锁图标。</li>
+                <li style="margin-bottom: 0.6rem;"><strong>善用浏览器功能</strong> — 使用「页面内查找」(Ctrl+F / Cmd+F) 快速定位关键词；如需保存内容，建议使用浏览器原生收藏或截图工具。</li>
+                <li style="margin-bottom: 0.6rem;"><strong>留意页面更新</strong> — 如果内容与预期不符，可以尝试清除缓存或强制刷新 (Ctrl+Shift+R) 获取最新版本。</li>
+            </ol>
+            <p>以上提醒并不针对特定问题，而是日常网络访问中普遍适用的良好习惯。保持这些意识，能让信息获取更高效、更可靠。</p>
+            <hr>
+            <p style="color: #4d4944; font-size: 0.95rem;">⚡ 最后一点：如果你发现 <a href="https://home-zh-hth.com">hth</a> 的某些部分无法正常显示，可以先检查网络连接，或者尝试换个时间段再访问——多数临时性问题都可以通过简单重试解决。</p>
+        </section>
+
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <footer class="footer-note">
+        <div class="inner">
+            <p>🔗 随时返回 <a href="https://home-zh-hth.com">hth</a> 查看最新内容</p>
+            <p class="meta">本页为独立说明，仅作信息整理 · 无诱导或推广意图</p>
+        </div>
+    </footer>
+
+</body>
+</html>
